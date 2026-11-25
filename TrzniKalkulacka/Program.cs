@@ -158,8 +158,8 @@ class Program
 
     static void PrintTable(double[,] table)
     {
-        Console.WriteLine($"{"Cena P",10} | {"QD",10} | {"QS",10} | {"QD - QS",10} | Stav trhu");
-        Console.WriteLine(new string('-', 70));
+        Console.WriteLine($"{"Cena P",8} | {"QD",8} | {"QS",8} | {"QD - QS",8} | Stav trhu");
+        Console.WriteLine(new string('-', 58));
 
         for (int i = 0; i < table.GetLength(0); i++)
         {
@@ -170,22 +170,23 @@ class Program
             if (Math.Abs(diff) < 0.5)
             {
                 Console.ForegroundColor = ConsoleColor.Green;
-                state = "téměř rovnováha";
+                state = "rovnováha";
             }
             else if (diff > 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                state = "převis poptávky (nedostatek)";
+                state = "nedostatek";
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                state = "převis nabídky (přebytek)";
+                state = "přebytek";
             }
 
-            Console.WriteLine($"{Format(table[i, 0]),10} | {Format(table[i, 1]),10} | {Format(table[i, 2]),10} | {Format(diff),10} | {state}");
+            Console.WriteLine($"{Format(table[i, 0]),8} | {Format(table[i, 1]),8} | {Format(table[i, 2]),8} | {Format(diff),8} | {state}");
         }
         Console.ResetColor();
+        Console.WriteLine("nedostatek = převis poptávky (QD > QS), přebytek = převis nabídky (QS > QD)");
     }
 
     // -----------------------------------------------------------------
